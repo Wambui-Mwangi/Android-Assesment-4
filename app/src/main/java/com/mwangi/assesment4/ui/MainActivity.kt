@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mwangi.assesment4.databinding.ActivityMainBinding
+import com.mwangi.assesment4.model.Posts
 import com.mwangi.assesment4.viewmodel.PostsViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
         postsViewModel.fetchPosts()
 
         postsViewModel.errLiveData.observe(this, Observer { err->
@@ -27,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         postsViewModel.postsLiveData.observe(this, Observer { postsList->
-            binding.rvPosts.layoutManager = LinearLayoutManager(this@MainActivity)
-            binding.rvPosts.adapter = RVAdapter(postsList, this)
+            binding.rvPosts.adapter = RVAdapter(postsList, this@MainActivity)
+            binding.rvPosts.layoutManager = LinearLayoutManager(this)
         })
     }
 }

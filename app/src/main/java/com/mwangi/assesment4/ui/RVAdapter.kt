@@ -15,10 +15,12 @@ class RVAdapter(var postsList: List<Posts>, var context:Context): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: PostsViewHolder, position: Int) {
-        var post = postsList[position]
-        var binding = holder.binding
+        val post = postsList[position]
+        val binding = holder.binding
         binding.tvTitle.text = post.title
         binding.tvBody.text = post.body
+        binding.tvUserId.text = post.userId.toString()
+        binding.tvId.text = post.id.toString()
 
     }
 

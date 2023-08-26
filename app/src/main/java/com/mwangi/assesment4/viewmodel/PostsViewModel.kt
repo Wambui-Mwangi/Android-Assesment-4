@@ -17,7 +17,8 @@ class PostsViewModel:ViewModel() {
         viewModelScope.launch {
             val response = postsRepo.getPosts()
             if (response.isSuccessful){
-                postsLiveData.postValue(response.body()?.posts)
+                val posts=response.body()?: emptyList()
+                postsLiveData.postValue(posts)
             }else{
                 errLiveData.postValue(response.errorBody()?.string())
             }
